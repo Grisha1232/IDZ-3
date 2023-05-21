@@ -1,2 +1,3 @@
-# IDZ-3
+# Селезнев Григорий
+
 Homework for OS number 3
