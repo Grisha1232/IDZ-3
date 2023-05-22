@@ -65,8 +65,12 @@ int main() {
   srand(time(NULL));
   int client_socket;
   int port;
+  char *address = NULL;
   struct sockaddr_in server_addr;
 
+  printf("Enter the address (format *.*.*.*): ");
+  scanf("%s", address);
+  
   printf("Enter the port: ");
   scanf("%d", &port);
 
@@ -79,8 +83,8 @@ int main() {
 
   // Настройка адреса сервера
   server_addr.sin_family = AF_INET;
-  server_addr.sin_port = port;
-  if (inet_pton(AF_INET, SERVER_IP, &(server_addr.sin_addr)) <= 0) {
+  server_addr.sin_port = htons(port);
+  if (inet_pton(AF_INET, address, &(server_addr.sin_addr)) <= 0) {
     perror("Error setting server address");
     exit(1);
   }
